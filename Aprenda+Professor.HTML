@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Aprenda+</title>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+        <style>
+            body {
+                font-family: 'League Spartan', sans-serif;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+            }
+
+            textarea {
+                border-radius: 24px;
+                text-align: center;
+                width: 400px;
+            }
+
+            .faixa {
+                width: 100%;
+                height: 100px;
+                background-color: #00DDA1;
+                position: fixed;
+                color: white;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+            }
+
+            .point {
+                color: white;
+            }
+
+            .button {
+                padding: 12px;
+                border-radius: 24px;
+                background-color: yellow;
+                color: black;
+                text-decoration: none;
+            }
+
+            .atalho {
+                width: 70px;
+            }
+
+            .caderno {
+                border-radius: 24px;
+                text-align: center;
+                width: 1600px;
+                height: 50000px;
+            }
+
+            .textarea-first {
+                margin-left: 200px;
+            }
+
+            .atalho-primeiro {
+                width: 70px;
+                margin-left: 610px;
+            }
+
+            .image-inicio {
+                width: 700px;
+                border-radius: 60px;
+            }
+
+            .tabs {
+                display: flex;
+                flex-direction: row;
+                background: #00AF80;
+                padding: 10px 10px 0 10px;
+                gap: 6px;
+                border-radius: 30px;
+            }
+
+            .aba {
+                padding: 10px 20px;
+                color: white;
+                cursor: pointer;
+                border-radius: 8px 8px 0 0;
+                transition: all 0.2s;
+            }
+
+            .aba:hover {
+                background: #00DDA1;
+                color: white;
+                border-radius: 30px;
+            }
+
+            .aba.ativa {
+                background: #00DDA1;
+                color: white;
+                font-weight: bold;
+                border-radius: 30px;
+            }
+
+            .conteudo {
+                flex: 1;
+                padding: 40px;
+                background: white;
+                display: none;
+            }
+
+            .conteudo.ativo {
+                display: block;
+            }
+
+            .calendario {
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                width: 320px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+                margin: 0 auto;
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .header h2 {
+                font-size: 18px;
+                margin: 0;
+            }
+
+            .btn {
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 8px;
+            }
+
+            .btn:hover {
+                background: #f0f0f0;
+            }
+
+            .dias-semana {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                text-align: center;
+                font-size: 12px;
+                color: #999;
+                margin-bottom: 8px;
+            }
+
+            .dias {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                text-align: center;
+                gap: 4px;
+            }
+
+            .dia {
+                padding: 8px 4px;
+                border-radius: 8px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background 0.15s;
+            }
+
+            .dia:hover { background: #f0f0f0; }
+            .dia.hoje { background: #00DDA1; color: white; font-weight: bold; }
+            .dia.marcado { background: #fff0f0; color: #e53935; font-weight: bold; }
+            .dia.vazio { cursor: default; }
+        </style>
+    </head>
+    <body>
+
+        <div class="faixa">
+            <center>
+                <h1>
+                    Aprenda+
+                </h1>
+            </center>
+        </div>
+
+        <p class="point">
+            .
+        </p>
+
+        <p class="point">
+            .
+        </p>
+        
+        <div class="tabs">
+        <div class="aba ativa" onclick="trocar(event, 'pagina1')">Início</div>
+        <div class="aba" onclick="trocar(event, 'pagina2')">Provas</div>
+        <div class="aba" onclick="trocar(event, 'pagina3')">Trabalhos</div>
+        <div class="aba" onclick="trocar(event, 'pagina4')">Advertências</div>
+        <div class="aba" onclick="trocar(event, 'pagina5')">Notas</div>
+        <div class="aba" onclick="trocar(event, 'pagina6')">Calendário</div>
+        <div class="aba" onclick="trocar(event, 'pagina7')">Caderno</div>
+        <div class="aba" onclick="trocar(event, 'pagina8')">Alunos</div>
+        <div class="aba" onclick="trocar(event, 'pagina9')">A+</div>
+    </div>
+
+    <div id="pagina1" class="conteudo ativo">
+        <center><h1>Boas-Vindas Ao Aprenda+ Para Professor</h1></center>
+        <center><p>Experimente Todas As Incriveis Ferramentas Do Aprenda+</p></center>
+        <center><img src="https://tdah.org.br/wp-content/uploads/jovem-professora-sorridente-usando-oculos-parada-na-frente-do-quadro-negro-segurando-encalhado-para-a-prancha-colocando-a-mao-no-quadril-na-sala-de-aula_141793-105324-1024x655.jpg-1-1024x640.webp" class="image-inicio"></center>
+    </div>
+
+    <div id="pagina2" class="conteudo">
+        <center><h1>Envie Um Lembrete De Prova Ao Seu Aluno Via E-mail</h1></center>
+        <center><p>Também Dá Pra Enviar O Conteúdo Da Prova</p></center>
+        <center><h1 class="point">.</h1></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno"></textarea></center>
+        <center><textarea placeholder="E-mail Do Aluno"></textarea></center>
+        <center><textarea placeholder="Disciplina"></textarea></center>
+        <center><textarea placeholder="Conteúdo"></textarea></center>
+        <center><h1 class="point">.</h1></center>
+        <center><a href="mailto:aluno@email.com?subject=Prova Marcada&body=Olá Professsor, Personalize Aqui Seu E-mail Para O Aluno" class="button">Enviar Com O Icloud</a></center>
+        <center><p class="point">.</p></center>
+        <center><a href="https://mail.google.com/mail/?view=cm" class="button">Enviar Com O Gmail</a></center>
+        <center><h1 class="point">.</h1></center>
+        <center><h1>Monte Sua Prova</h1></center>
+        <center><p>Escolha Também A Plataforma</p></center>
+        <center><p class="point">.</p></center>
+        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+    </div>
+
+    <div id="pagina3" class="conteudo">
+        <center><h1>Envie Um Lembrete De Trabalho Ao Seu Aluno Via E-mail</h1></center>
+        <center><p>Também Dá Pra Enviar O Conteúdo Do Trabalho</p></center>
+        <center><h1 class="point">.</h1></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno"></textarea></center>
+        <center><textarea placeholder="E-mail Do Aluno"></textarea></center>
+        <center><textarea placeholder="Disciplina"></textarea></center>
+        <center><textarea placeholder="Conteúdo"></textarea></center>
+        <center><h1 class="point">.</h1></center>
+        <center><a href="mailto:aluno@email.com?subject=Prova Marcada&body=Olá Professsor, Personalize Aqui Seu E-mail Para O Aluno" class="button">Enviar Com O Icloud</a></center>
+        <center><p class="point">.</p></center>
+        <center><a href="https://mail.google.com/mail/?view=cm" class="button">Enviar Com O Gmail</a></center>
+        <center><h1 class="point">.</h1></center>
+        <center><h1>Monte Seu Trabalho</h1></center>
+        <center><p>Escolha Também A Plataforma</p></center>
+        <center><p class="point">.</p></center>
+        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+    </div>
+
+    <div id="pagina4" class="conteudo">
+        <center><h1>Envie Uma Advertência Ao Seu Aluno Via E-mail</h1></center>
+        <center><p>Seu Aluno Fez Algo De Errado, Manda Uma Advertência Aí</p></center>
+        <center><h1 class="point">.</h1></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno"></textarea></center>
+        <center><textarea placeholder="E-mail Do Aluno"></textarea></center>
+        <center><textarea placeholder="Disciplina"></textarea></center>
+        <center><textarea placeholder="Conteúdo"></textarea></center>
+        <center><h1 class="point">.</h1></center>
+        <center><a href="mailto:aluno@email.com?subject=Prova Marcada&body=Olá Professsor, Personalize Aqui Seu E-mail Para O Aluno" class="button">Enviar Com O Icloud</a></center>
+        <center><p class="point">.</p></center>
+        <center><a href="https://mail.google.com/mail/?view=cm" class="button">Enviar Com O Gmail</a></center>
+        <center><h1 class="point">.</h1></center>
+        <center><h1>Monte Sua Advertência</h1></center>
+        <center><p>Escolha Também A Plataforma</p></center>
+        <center><p class="point">.</p></center>
+        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+    </div>
+
+    <div id="pagina5" class="conteudo">
+        <center><h1>Aqui Coloque A Nota Final Dos Alunos Desse Trimestre</h1></center>
+        <center><p>Comforme O Tempo Vamos Atualizando O Trimestre</p></center>
+        <center><h1 class="point">.</h1></center>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 1" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 2"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 3"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 4" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 5"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 6"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 7" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 8"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 9"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 10" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 11"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 12"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 13" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 14"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 15"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 16" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 17"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 18"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 19" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 20"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 21"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 22" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 23"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 24"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 25" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 26"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 27"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 28" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 29"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 30"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 31" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 32"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 33"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 34" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 35"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 36"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 37" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 38"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 39"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 40" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 41"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 42"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 43" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 44"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 45"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 46" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 47"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 48"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 49" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 50"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 51"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 52" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 53"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 54"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 55" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 56"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 57"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 58" class="textarea-first"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 59"></textarea>
+        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 60"></textarea>
+    </div>
+
+    <div id="pagina6" class="conteudo">
+        <center><h1>Calendário Aprenda+</h1></center>
+        <center><p>Agende Provas, Trabalhos, Compromissos Pedagógicos ETC</p></center>
+        <center><h1 class="point">.</h1></center>
+            <div class="calendario">
+                <div class="header">
+            <button class="btn" onclick="mudarMes(-1)">‹</button>
+            <h2 id="titulo"></h2>
+            <button class="btn" onclick="mudarMes(1)">›</button>
+        </div>
+        <div class="dias-semana">
+            <span>Dom</span><span>Seg</span><span>Ter</span>
+            <span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+        <div class="dias" id="dias"></div>
+    </div>
+
+    </div>
+
+    <div id="pagina7" class="conteudo">
+        <center><h1>Caderno Digital Aprenda+</h1></center>
+        <center><p>Aqui Anote Seus Compromissos, Planejamento ETC</p></center>
+        <center><textarea placeholder="Caderno" class="caderno"></textarea></center>
+    </div>
+
+    </div>
+
+    <div id="pagina8" class="conteudo">
+        <center><h1>Sua Lista De Alunos</h1></center>
+        <center><p>Todos Seus Alunos Aqui Nessa Lista</p></center>
+        <center><h1 class="point">.</h1></center>
+        <textarea placeholder="Aluno 1" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 2"></textarea>
+        <textarea placeholder="Aluno 3"></textarea>
+        <textarea placeholder="Aluno 4" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 5"></textarea>
+        <textarea placeholder="Aluno 6"></textarea>
+        <textarea placeholder="Aluno 7" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 8"></textarea>
+        <textarea placeholder="Aluno 9"></textarea>
+        <textarea placeholder="Aluno 10" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 11"></textarea>
+        <textarea placeholder="Aluno 12"></textarea>
+        <textarea placeholder="Aluno 13" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 14"></textarea>
+        <textarea placeholder="Aluno 15"></textarea>
+        <textarea placeholder="Aluno 16" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 17"></textarea>
+        <textarea placeholder="Aluno 18"></textarea>
+        <textarea placeholder="Aluno 19" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 20"></textarea>
+        <textarea placeholder="Aluno 21"></textarea>
+        <textarea placeholder="Aluno 22" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 23"></textarea>
+        <textarea placeholder="Aluno 24"></textarea>
+        <textarea placeholder="Aluno 25" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 26"></textarea>
+        <textarea placeholder="Aluno 27"></textarea>
+        <textarea placeholder="Aluno 28" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 29"></textarea>
+        <textarea placeholder="Aluno 30"></textarea>
+        <textarea placeholder="Aluno 31" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 32"></textarea>
+        <textarea placeholder="Aluno 33"></textarea>
+        <textarea placeholder="Aluno 34" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 35"></textarea>
+        <textarea placeholder="Aluno 36"></textarea>
+        <textarea placeholder="Aluno 37" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 38"></textarea>
+        <textarea placeholder="Aluno 39"></textarea>
+        <textarea placeholder="Aluno 40" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 41"></textarea>
+        <textarea placeholder="Aluno 42"></textarea>
+        <textarea placeholder="Aluno 43" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 44"></textarea>
+        <textarea placeholder="Aluno 45"></textarea>
+        <textarea placeholder="Aluno 46" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 47"></textarea>
+        <textarea placeholder="Aluno 48"></textarea>
+        <textarea placeholder="Aluno 49" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 50"></textarea>
+        <textarea placeholder="Aluno 51"></textarea>
+        <textarea placeholder="Aluno 52" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 53"></textarea>
+        <textarea placeholder="Aluno 54"></textarea>
+        <textarea placeholder="Aluno 55" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 56"></textarea>
+        <textarea placeholder="Aluno 57"></textarea>
+        <textarea placeholder="Aluno 58" class="textarea-first"></textarea>
+        <textarea placeholder="Aluno 59"></textarea>
+        <textarea placeholder="Aluno 60"></textarea>
+    </div>
+
+    <div id="pagina9" class="conteudo">
+        <center>
+            <h1>A+, a inteligencia articial para ajuda ao professor!</h1>
+
+            <p>
+                Faça uma pergunta e o A+ vai ajudar você.
+            </p>
+
+            <textarea
+                id="perguntaIA"
+                placeholder="Digite sua pergunta aqui..."
+                style="
+                    width: 500px;
+                    height: 150px;
+                    padding: 20px;
+                    font-size: 18px;
+                    border-radius: 24px;
+                    resize: vertical;
+                    font-family: 'League Spartan', sans-serif;
+                "
+            ></textarea>
+
+            <br><br>
+
+            <button
+                onclick="perguntarIA()"
+                style="
+                    padding: 14px 30px;
+                    border: none;
+                    border-radius: 24px;
+                    background-color: yellow;
+                    color: black;
+                    font-size: 18px;
+                    cursor: pointer;
+                    font-family: 'League Spartan', sans-serif;
+                "
+            >
+                Perguntar ao A+
+            </button>
+
+            <div
+                id="respostaIA"
+                style="
+                    margin: 30px auto;
+                    max-width: 800px;
+                    min-height: 100px;
+                    padding: 25px;
+                    border-radius: 24px;
+                    background: #f5f5f5;
+                    text-align: left;
+                    white-space: pre-wrap;
+                    font-family: 'League Spartan', sans-serif;
+                "
+            >
+                A resposta aparecerá aqui...
+            </div>
+        </center>
+    </div>
+
+    <script>
+    function trocar(event, id) {
+        document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+        document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('ativo'));
+        document.getElementById(id).classList.add('ativo');
+        event.target.classList.add('ativa');
+    }
+
+    const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+           'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+    let hoje = new Date();
+    let ano = hoje.getFullYear();
+    let mes = hoje.getMonth();
+
+    let compromissos = JSON.parse(localStorage.getItem('compromissos')) || {};
+
+    function renderizar() {
+        document.getElementById('titulo').textContent = meses[mes] + ' ' + ano;
+
+        const primeiroDia = new Date(ano, mes, 1).getDay();
+        const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+        let html = '';
+        for (let i = 0; i < primeiroDia; i++) {
+            html += `<div class="dia vazio"></div>`;
+        }
+        for (let d = 1; d <= totalDias; d++) {
+            const ehHoje = d === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
+            const chave = `${ano}-${mes}-${d}`;
+            const temCompromisso = compromissos[chave];
+            const classe = ehHoje ? 'hoje' : temCompromisso ? 'marcado' : '';
+            const label = temCompromisso ? `<div style="font-size:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${compromissos[chave]}</div>` : '';
+            html += `<div class="dia ${classe}" onclick="abrirPopup(${d})">${d}${label}</div>`;
+        }
+        document.getElementById('dias').innerHTML = html;
+    }
+
+    function mudarMes(direcao) {
+        mes += direcao;
+        if (mes > 11) { mes = 0; ano++; }
+        if (mes < 0) { mes = 11; ano--; }
+        renderizar();
+    }
+
+    function abrirPopup(dia) {
+        const chave = `${ano}-${mes}-${dia}`;
+        const texto = prompt(`Compromisso para ${dia} de ${meses[mes]}:`, compromissos[chave] || '');
+        if (texto !== null) {
+            if (texto.trim()) {
+                compromissos[chave] = texto.trim();
+            } else {
+                delete compromissos[chave];
+            }
+            localStorage.setItem('compromissos', JSON.stringify(compromissos));
+            renderizar();
+        }
+    }
+
+    renderizar();
+
+        async function perguntarIA() {
+        const pergunta = document.getElementById("perguntaIA").value.trim();
+        const resposta = document.getElementById("respostaIA");
+
+        if (!pergunta) {
+            resposta.textContent = "Digite uma pergunta primeiro.";
+            return;
+        }
+
+        resposta.textContent = "O A+ está pensando...";
+
+        try {
+            const resultado = await fetch("/api/perguntar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    pergunta: pergunta
+                })
+            });
+
+            const dados = await resultado.json();
+
+            if (!resultado.ok) {
+                throw new Error(dados.erro || "Erro ao consultar a IA.");
+            }
+
+            resposta.textContent = dados.resposta;
+
+        } catch (erro) {
+            console.error(erro);
+            resposta.textContent =
+                "Não foi possível conversar com a IA. Verifique se o servidor está funcionando.";
+        }
+    }
+
+
+    window.onload = function() {
+        document.querySelectorAll('textarea').forEach((textarea, index) => {
+            const valorSalvo = localStorage.getItem('textarea_' + index);
+            if (valorSalvo) {
+                textarea.value = valorSalvo;
+            }
+            textarea.addEventListener('input', () => {
+                localStorage.setItem('textarea_' + index, textarea.value);
+            });
+        });
+    }
+
+    async function perguntarIA() {
+
+    const pergunta = document.getElementById("perguntaIA").value.trim();
+    const resposta = document.getElementById("respostaIA");
+
+    if (!pergunta) {
+        resposta.textContent = "Digite uma pergunta primeiro.";
+        return;
+    }
+
+    resposta.textContent = "O A+ está pensando...";
+
+    try {
+        const resultado = await fetch("/api/perguntar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pergunta: pergunta
+            })
+        });
+
+        const dados = await resultado.json();
+
+        if (!resultado.ok) {
+            throw new Error(dados.erro || "Erro ao consultar a IA.");
+        }
+
+        resposta.textContent = dados.resposta;
+
+    } catch (erro) {
+        console.error(erro);
+        resposta.textContent = "Erro: " + erro.message;
+    }
+}
+</script>
+
+    </body>
+</html>
