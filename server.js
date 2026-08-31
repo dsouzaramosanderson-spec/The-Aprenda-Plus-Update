@@ -73,6 +73,7 @@ app.post("/api/perguntar-colega", async (req, res) => {
       ],
     });
 
+    // CORRIGIDO: Adicionado o [0] que faltava
     res.json({ resposta: respostaIA.choices[0].message.content });
   } catch (erro) {
     console.error("Erro no servidor:", erro);
@@ -100,6 +101,7 @@ app.post("/api/perguntar-professor", async (req, res) => {
       ],
     });
 
+    // CORRIGIDO: Adicionado o [0] que faltava
     res.json({ resposta: respostaIA.choices[0].message.content });
   } catch (erro) {
     console.error("Erro no servidor:", erro);
