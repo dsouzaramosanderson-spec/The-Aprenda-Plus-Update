@@ -14,14 +14,19 @@ const client = new OpenAI({
 app.use(express.json());
 app.use(express.static("."));
 
-// Rota principal: Agora abre o index.html direto
+// Rota principal: abre o index.html direto
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Nova rota para a página do Aluno (Colega)
+// Rota para a página do Aluno (Colega)
 app.get("/aluno", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
+});
+
+// Rota corrigida para a página aprenda+b.html
+app.get("/aprenda+b.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+b.html"));
 });
 
 // Rota para a página do Professor
@@ -126,5 +131,6 @@ app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
   console.log(`Acesse a Home em: http://localhost:${PORT}/`);
   console.log(`Acesse o Colega em: http://localhost:${PORT}/aluno`);
+  console.log(`Acesse o B em: http://localhost:${PORT}/aprenda+b.html`);
   console.log(`Acesse o Professor em: http://localhost:${PORT}/professor`);
 });
