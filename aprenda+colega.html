@@ -522,8 +522,6 @@ function abrirPopup(dia) {
     }
 }
 
-renderizar();
-
 async function perguntarIA() {
     const pergunta = document.getElementById("perguntaIA").value.trim();
     const resposta = document.getElementById("respostaIA");
@@ -536,7 +534,7 @@ async function perguntarIA() {
     resposta.textContent = "O A+ está pensando...";
 
     try {
-        // Rota corrigida especificamente para o Colega
+        // Envia para a rota correta do Colega no servidor
         const resultado = await fetch("/api/perguntar-colega", {
             method: "POST",
             headers: {
@@ -561,7 +559,10 @@ async function perguntarIA() {
     }
 }
 
+// Inicializa tudo junto ao carregar a página sem dar conflitos
 window.onload = function() {
+    renderizar();
+    
     document.querySelectorAll('textarea').forEach((textarea, index) => {
         const valorSalvo = localStorage.getItem('textarea_' + index);
         if (valorSalvo) {
