@@ -16,12 +16,12 @@ app.use(express.static("."));
 
 // Rota para a página do Colega
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Aprenda+Colega.HTML"));
+  res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
 
 // Rota para a página do Professor
 app.get("/professor", (req, res) => {
-  res.sendFile(path.join(__dirname, "Aprenda+Professor.HTML"));
+  res.sendFile(path.join(__dirname, "aprenda+professor.html"));
 });
 
 // Rota da API para o Colega
