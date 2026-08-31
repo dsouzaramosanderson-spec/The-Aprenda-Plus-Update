@@ -35,7 +35,7 @@ app.get("/aprenda+c.html", (req, res) => {
 
 // Rota dedicada para a página do professor bem-vindo
 app.get("/aprenda+professorBemvindo.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "aprenda+professorBemvindo.html"));
+  res.sendFile(path.join(__dirname, "aprenda+professorbemvindo.html"));
 });
 
 // Rota para a página do Professor
