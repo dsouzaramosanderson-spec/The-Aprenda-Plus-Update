@@ -1,176 +1,214 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>Aprenda+</title>
         <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
 
-        <style>
-            body {
-                font-family: 'League Spartan', sans-serif;
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-            }
+<style>
+    body {
+        font-family: 'League Spartan', sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0; /* Evita que o corpo do site crie barras de rolagem desnecessárias no celular */
+    }
 
-            textarea {
-                border-radius: 24px;
-                text-align: center;
-                width: 400px;
-            }
+    textarea {
+        border-radius: 24px;
+        text-align: center;
+        width: 100%;       /* Ocupa a largura total disponível dentro da caixa */
+        max-width: 400px;  /* Mantém o limite original de 400px em telas de computador */
+        box-sizing: border-box;
+    }
 
-            .faixa {
-                width: 100%;
-                height: 100px;
-                background-color: #00DDA1;
-                position: fixed;
-                color: white;
-                z-index: 1000;
-                left: 0;
-                top: 0;
-            }
+    .faixa {
+        width: 100%;
+        height: 100px;
+        background-color: #00DDA1;
+        position: fixed;
+        color: white;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+    }
 
-            .point {
-                color: white;
-            }
+    .point {
+        color: white;
+    }
 
-            .button {
-                padding: 12px;
-                border-radius: 24px;
-                background-color: yellow;
-                color: black;
-                text-decoration: none;
-            }
+    .button {
+        padding: 12px;
+        border-radius: 24px;
+        background-color: yellow;
+        color: black;
+        text-decoration: none;
+        display: inline-block; /* Garante o espaçamento correto em telas de toque */
+    }
 
-            .atalho {
-                width: 70px;
-            }
+    .atalho {
+        width: 70px;
+    }
 
-            .caderno {
-                border-radius: 24px;
-                text-align: center;
-                width: 1600px;
-                height: 50000px;
-            }
+    .caderno {
+        border-radius: 24px;
+        text-align: center;
+        width: 100%;       /* Torna o caderno responsivo para caber na tela do celular */
+        max-width: 1600px; /* Mantém o tamanho original de 1600px no computador */
+        height: auto;      /* Troca o tamanho fixo imenso por altura dinâmica */
+        min-height: 500px; /* Garante um tamanho confortável para digitação */
+        box-sizing: border-box;
+    }
 
-            .textarea-first {
-                margin-left: 200px;
-            }
+    .textarea-first {
+        margin-left: 0;    /* Remove o espaçamento fixo que jogava o elemento para fora da tela do celular */
+        margin: 0 auto;    /* Centraliza o elemento automaticamente */
+        display: block;
+    }
 
-            .atalho-primeiro {
-                width: 70px;
-                margin-left: 610px;
-            }
+    .atalho-primeiro {
+        width: 70px;
+        margin-left: 0;    /* Remove a margem fixa de 610px para não esmagar no smartphone */
+        margin: 0 auto;    /* Centraliza o atalho */
+        display: inline-block;
+    }
 
-            .image-inicio {
-                width: 700px;
-                border-radius: 60px;
-            }
+    .image-inicio {
+        width: 100%;       /* Ocupa a tela inteira do celular */
+        max-width: 700px;  /* Respeita o limite original de 700px no computador */
+        height: auto;
+        border-radius: 60px;
+    }
 
-            .tabs {
-                display: flex;
-                flex-direction: row;
-                background: #00AF80;
-                padding: 10px 10px 0 10px;
-                gap: 6px;
-                border-radius: 30px;
-            }
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;   /* Permite que as abas quebrem para a linha de baixo se faltar espaço no celular */
+        background: #00AF80;
+        padding: 10px 10px 0 10px;
+        gap: 6px;
+        border-radius: 30px;
+    }
 
-            .aba {
-                padding: 10px 20px;
-                color: white;
-                cursor: pointer;
-                border-radius: 8px 8px 0 0;
-                transition: all 0.2s;
-            }
+    .aba {
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        transition: all 0.2s;
+    }
 
-            .aba:hover {
-                background: #00DDA1;
-                color: white;
-                border-radius: 30px;
-            }
+    .aba:hover {
+        background: #00DDA1;
+        color: white;
+        border-radius: 30px;
+    }
 
-            .aba.ativa {
-                background: #00DDA1;
-                color: white;
-                font-weight: bold;
-                border-radius: 30px;
-            }
+    .aba.ativa {
+        background: #00DDA1;
+        color: white;
+        font-weight: bold;
+        border-radius: 30px;
+    }
 
-            .conteudo {
-                flex: 1;
-                padding: 40px;
-                background: white;
-                display: none;
-            }
+    .conteudo {
+        flex: 1;
+        padding: 20px;     /* Reduzido de 40px para 20px para sobrar mais espaço útil na tela do celular */
+        background: white;
+        display: none;
+        box-sizing: border-box;
+    }
 
-            .conteudo.ativo {
-                display: block;
-            }
+    .conteudo.ativo {
+        display: block;
+    }
 
-            .calendario {
-                background: white;
-                border-radius: 16px;
-                padding: 24px;
-                width: 320px;
-                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-                margin: 0 auto;
-            }
+    .calendario {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        width: 100%;       /* Adapta a largura ao celular */
+        max-width: 320px;  /* Mantém o limite de 320px original */
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
 
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-            }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-            .header h2 {
-                font-size: 18px;
-                margin: 0;
-            }
+    .header h2 {
+        font-size: 18px;
+        margin: 0;
+    }
 
-            .btn {
-                background: none;
-                border: none;
-                font-size: 18px;
-                cursor: pointer;
-                padding: 4px 8px;
-                border-radius: 8px;
-            }
+    .btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 8px;
+    }
 
-            .btn:hover {
-                background: #f0f0f0;
-            }
+    .btn:hover {
+        background: #f0f0f0;
+    }
 
-            .dias-semana {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                text-align: center;
-                font-size: 12px;
-                color: #999;
-                margin-bottom: 8px;
-            }
+    .dias-semana {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 8px;
+    }
 
-            .dias {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                text-align: center;
-                gap: 4px;
-            }
+    .dias {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        gap: 4px;
+    }
 
-            .dia {
-                padding: 8px 4px;
-                border-radius: 8px;
-                font-size: 14px;
-                cursor: pointer;
-                transition: background 0.15s;
-            }
+    .dia {
+        padding: 8px 4px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
 
-            .dia:hover { background: #f0f0f0; }
-            .dia.hoje { background: #00DDA1; color: white; font-weight: bold; }
-            .dia.marcado { background: #fff0f0; color: #e53935; font-weight: bold; }
-            .dia.vazio { cursor: default; }
-        </style>
+    .dia:hover { background: #f0f0f0; }
+    .dia.hoje { background: #00DDA1; color: white; font-weight: bold; }
+    .dia.marcado { background: #fff0f0; color: #e53935; font-weight: bold; }
+    .dia.vazio { cursor: default; }
+
+    /* AJUSTE EXCLUSIVO PARA TELAS PEQUENAS (CELULARES) */
+    @media (max-width: 600px) {
+        .tabs {
+            flex-direction: column; /* As abas ficam uma embaixo da outra para facilitar o clique no celular */
+            border-radius: 16px;
+            padding: 10px;
+        }
+        
+        .aba {
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .faixa h1 {
+            font-size: 24px;   /* Diminui levemente o título no topo para não cortar no celular */
+            margin-top: 32px;
+        }
+    }
+</style>
+
     </head>
     <body>
 
