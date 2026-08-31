@@ -24,7 +24,7 @@ app.get("/aluno", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
 
-// Rota corrigida para a página aprenda+b.html
+// Rota para a página aprenda+b.html
 app.get("/aprenda+b.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+b.html"));
 });
@@ -76,7 +76,7 @@ app.post("/api/perguntar-colega", async (req, res) => {
       ],
     });
 
-    // CORREÇÃO AQUI: Adicionado o [0] que faltava
+    // CORRIGIDO: Adicionado o [0] que faltava em choices
     res.json({
       resposta: respostaIA.choices[0].message.content,
     });
@@ -116,7 +116,7 @@ app.post("/api/perguntar-professor", async (req, res) => {
       ],
     });
 
-    // CORREÇÃO AQUI: Adicionado o [0] que faltava
+    // CORRIGIDO: Adicionado o [0] que faltava em choices
     res.json({
       resposta: respostaIA.choices[0].message.content,
     });
