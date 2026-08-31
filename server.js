@@ -28,6 +28,16 @@ app.get("/aprenda+b.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+b.html"));
 });
 
+// Rota dedicada para resolver o Cannot GET do aprenda+c.html
+app.get("/aprenda+c.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+c.html"));
+});
+
+// Rota dedicada para a página do professor bem-vindo
+app.get("/aprenda+professorBemvindo.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+professorBemvindo.html"));
+});
+
 // Rota para a página do Professor
 app.get("/professor", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+professor.html"));
