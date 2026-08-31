@@ -108,6 +108,12 @@ app.post("/api/perguntar-professor", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor ativo na porta ${PORT}`);
-});
+// Permite rodar localmente no seu PC, mas não quebra no Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Servidor ativo na porta ${PORT}`);
+  });
+}
+
+// OBRIGATÓRIO PARA O VERCEL: Exporta o app para ele gerenciar as rotas
+module.exports = app;
