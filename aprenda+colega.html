@@ -1,147 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>Aprenda+</title>
         <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+        
+<style>
+    body {
+        font-family: 'League Spartan', sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0; /* Evita que o corpo crie barras de rolagem estranhas nas laterais do celular */
+    }
 
-        <style>
-            body {
-                font-family: 'League Spartan', sans-serif;
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-            }
+    textarea {
+        border-radius: 24px;
+        text-align: center;
+        width: 100%;       /* Ocupa a largura total da tela no celular */
+        max-width: 400px;  /* Mantém o limite original de 400px no computador */
+        box-sizing: border-box;
+    }
 
-            textarea {
-                border-radius: 24px;
-                text-align: center;
-                width: 400px;
-            }
+    .faixa {
+        width: 100%;
+        height: 100px;
+        background-color: #00DDA1;
+        position: fixed;
+        color: white;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+    }
 
-            .faixa {
-                width: 100%;
-                height: 100px;
-                background-color: #00DDA1;
-                position: fixed;
-                color: white;
-                z-index: 1000;
-                left: 0;
-                top: 0;
-            }
+    .point {
+        color: white;
+    }
 
-            .point {
-                color: white;
-            }
+    .button {
+        padding: 12px;
+        border-radius: 24px;
+        background-color: yellow;
+        color: black;
+        text-decoration: none;
+        display: inline-block; /* Garante o espaçamento de toque ideal no celular */
+    }
 
-            .button {
-                padding: 12px;
-                border-radius: 24px;
-                background-color: yellow;
-                color: black;
-                text-decoration: none;
-            }
+    .atalho {
+        width: 70px;
+    }
 
-            .atalho {
-                width: 70px;
-            }
+    .caderno {
+        border-radius: 24px;
+        text-align: center;
+        width: 100%;       /* Torna o caderno fluido para caber na tela pequena */
+        max-width: 1600px; /* Mantém o tamanho original de 1600px no monitor */
+        height: auto;      /* Troca o tamanho fixo gigante por altura dinâmica */
+        min-height: 500px; /* Garante espaço confortável para o caderno digital */
+        box-sizing: border-box;
+    }
 
-            .caderno {
-                border-radius: 24px;
-                text-align: center;
-                width: 1600px;
-                height: 50000px;
-            }
+    .textarea-first {
+        margin-left: 0;    /* Remove o espaçamento de 200px que jogaria a caixa para fora no celular */
+        margin: 0 auto;    /* Centraliza automaticamente */
+        display: block;
+    }
 
-            .textarea-first {
-                margin-left: 200px;
-            }
+    .atalho-primeiro {
+        width: 70px;
+        margin-left: 0;    /* Remove o recuo fixo de 610px */
+        margin: 0 auto;    /* Centraliza o atalho */
+        display: inline-block;
+    }
 
-            .atalho-primeiro {
-                width: 70px;
-                margin-left: 610px;
-            }
+    .image-inicio {
+        width: 100%;       /* Ocupa a tela inteira do smartphone */
+        max-width: 700px;  /* Respeita o limite de 700px do PC */
+        height: auto;
+        border-radius: 60px;
+    }
 
-            .image-inicio {
-                width: 700px;
-                border-radius: 60px;
-            }
+    .nota {
+        width: 100%;       /* Torna a largura fluida para o celular */
+        max-width: 100px;  /* Limita ao tamanho original de 100px */
+        box-sizing: border-box;
+    }
 
-            .nota {
-                width: 100px;
-            }
+    .textarea-first-nota {
+        margin-left: 0;    /* Remove a margem fixa de 400px que destruía a tela menor */
+        margin: 0 auto;    /* Centraliza a caixa de notas */
+        display: block;
+    }
 
-            .textarea-first-nota {
-                margin-left: 400px;
-            }
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;   /* Permite que as abas desçam de linha se não couberem no celular */
+        background: #00AF80;
+        padding: 10px 10px 0 10px;
+        gap: 6px;
+        border-radius: 30px;
+    }
 
-            .tabs {
-                display: flex;
-                flex-direction: row;
-                background: #00AF80;
-                padding: 10px 10px 0 10px;
-                gap: 6px;
-                border-radius: 30px;
-            }
+    .aba {
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        transition: all 0.2s;
+    }
 
-            .aba {
-                padding: 10px 20px;
-                color: white;
-                cursor: pointer;
-                border-radius: 8px 8px 0 0;
-                transition: all 0.2s;
-            }
+    .aba:hover {
+        background: #00DDA1;
+        color: white;
+        border-radius: 30px;
+    }
 
-            .aba:hover {
-                background: #00DDA1;
-                color: white;
-                border-radius: 30px;
-            }
+    .aba.ativa {
+        background: #00DDA1;
+        color: white;
+        font-weight: bold;
+        border-radius: 30px;
+    }
 
-            .aba.ativa {
-                background: #00DDA1;
-                color: white;
-                font-weight: bold;
-                border-radius: 30px;
-            }
+    .conteudo {
+        flex: 1;
+        padding: 20px;     /* Ajustado de 40px para 20px para sobrar mais área visual no celular */
+        background: white;
+        display: none;
+        box-sizing: border-box;
+    }
 
-            .conteudo {
-                flex: 1;
-                padding: 40px;
-                background: white;
-                display: none;
-            }
+    .conteudo.ativo {
+        display: block;
+    }
 
-            .conteudo.ativo {
-                display: block;
-            }
+    .calendario {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        width: 100%;       /* Adapta a largura ao celular */
+        max-width: 320px;  /* Segue o limite fixo original */
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
 
-            .calendario {
-                background: white;
-                border-radius: 16px;
-                padding: 24px;
-                width: 320px;
-                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-                margin: 0 auto;
-            }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-            }
+    .header h2 {
+        font-size: 18px;
+        margin: 0;
+    }
 
-            .header h2 {
-                font-size: 18px;
-                margin: 0;
-            }
-
-            .btn {
-                background: none;
-                border: none;
-                font-size: 18px;
-                cursor: pointer;
+    .btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
                 padding: 4px 8px;
                 border-radius: 8px;
             }
@@ -178,7 +200,27 @@
             .dia.hoje { background: #00DDA1; color: white; font-weight: bold; }
             .dia.marcado { background: #fff0f0; color: #e53935; font-weight: bold; }
             .dia.vazio { cursor: default; }
-        </style>
+
+    /* AJUSTE EXCLUSIVO PARA TELAS PEQUENAS (CELULARES) */
+    @media (max-width: 600px) {
+        .tabs {
+            flex-direction: column; /* Organiza o menu em lista vertical no celular para facilitar o clique */
+            border-radius: 16px;
+            padding: 10px;
+        }
+        
+        .aba {
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .faixa h1 {
+            font-size: 24px;   /* Ajusta o título para não estourar ou quebrar no topo */
+            margin-top: 32px;
+        }
+    }
+</style>
+
     </head>
     <body>
 
