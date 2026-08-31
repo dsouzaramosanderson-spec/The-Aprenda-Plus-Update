@@ -76,6 +76,7 @@ app.post("/api/perguntar-colega", async (req, res) => {
       ],
     });
 
+    // CORREÇÃO AQUI: Adicionado o [0] que faltava
     res.json({
       resposta: respostaIA.choices[0].message.content,
     });
@@ -115,6 +116,7 @@ app.post("/api/perguntar-professor", async (req, res) => {
       ],
     });
 
+    // CORREÇÃO AQUI: Adicionado o [0] que faltava
     res.json({
       resposta: respostaIA.choices[0].message.content,
     });
