@@ -18,37 +18,36 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Permite acessar a página do Aluno digitando apenas /aluno
+// Rotas para a página do Aluno (Colega)
 app.get("/aluno", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
-
-// Permite acessar a página do Aluno digitando o link completo /aprenda+colega.html
 app.get("/aprenda+colega.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
 
-// Rota para a página aprenda+b.html
+// Rotas para as páginas B e C
 app.get("/aprenda+b.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+b.html"));
 });
-
-// Rota para a página aprenda+c.html
 app.get("/aprenda+c.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+c.html"));
 });
 
-// Rota para a página do professor bem-vindo
-app.get("/aprenda+professorBemvindo.html", (req, res) => {
+// Rota para a página Aluno Bem-vindo
+app.get("/aprenda+colegabemvindo.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+colegabemvindo.html"));
+});
+
+// Rota para a página Professor Bem-vindo
+app.get("/aprenda+professorbemvindo.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+professorBemvindo.html"));
 });
 
-// Permite acessar a página do Professor digitando apenas /professor
+// Rotas para a página do Professor
 app.get("/professor", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+professor.html"));
 });
-
-// Permite acessar a página do Professor digitando o link completo /aprenda+professor.html
 app.get("/aprenda+professor.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+professor.html"));
 });
@@ -73,7 +72,6 @@ app.post("/api/perguntar-colega", async (req, res) => {
       ],
     });
 
-    // CORRIGIDO AGORA: adicionado o [0] que estava faltando
     res.json({ resposta: respostaIA.choices[0].message.content });
   } catch (erro) {
     console.error("Erro no servidor:", erro);
@@ -101,7 +99,6 @@ app.post("/api/perguntar-professor", async (req, res) => {
       ],
     });
 
-    // CORRIGIDO AGORA: adicionado o [0] que estava faltando
     res.json({ resposta: respostaIA.choices[0].message.content });
   } catch (erro) {
     console.error("Erro no servidor:", erro);
@@ -112,4 +109,3 @@ app.post("/api/perguntar-professor", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor ativo na porta ${PORT}`);
 });
-
