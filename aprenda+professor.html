@@ -497,117 +497,64 @@
 
     <script>
     function trocar(event, id) {
-        document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
-        document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('ativo'));
-        document.getElementById(id).classList.add('ativo');
-        event.target.classList.add('ativa');
+    document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+    document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('ativo'));
+    document.getElementById(id).classList.add('ativo');
+    event.target.classList.add('ativa');
+}
+
+const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+       'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+let hoje = new Date();
+let ano = hoje.getFullYear();
+let mes = hoje.getMonth();
+
+let compromissos = JSON.parse(localStorage.getItem('compromissos')) || {};
+
+function renderizar() {
+    document.getElementById('titulo').textContent = meses[mes] + ' ' + ano;
+
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+    const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+    let html = '';
+    for (let i = 0; i < primeiroDia; i++) {
+        html += `<div class="dia vazio"></div>`;
     }
-
-    const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-           'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-
-    let hoje = new Date();
-    let ano = hoje.getFullYear();
-    let mes = hoje.getMonth();
-
-    let compromissos = JSON.parse(localStorage.getItem('compromissos')) || {};
-
-    function renderizar() {
-        document.getElementById('titulo').textContent = meses[mes] + ' ' + ano;
-
-        const primeiroDia = new Date(ano, mes, 1).getDay();
-        const totalDias = new Date(ano, mes + 1, 0).getDate();
-
-        let html = '';
-        for (let i = 0; i < primeiroDia; i++) {
-            html += `<div class="dia vazio"></div>`;
-        }
-        for (let d = 1; d <= totalDias; d++) {
-            const ehHoje = d === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
-            const chave = `${ano}-${mes}-${d}`;
-            const temCompromisso = compromissos[chave];
-            const classe = ehHoje ? 'hoje' : temCompromisso ? 'marcado' : '';
-            const label = temCompromisso ? `<div style="font-size:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${compromissos[chave]}</div>` : '';
-            html += `<div class="dia ${classe}" onclick="abrirPopup(${d})">${d}${label}</div>`;
-        }
-        document.getElementById('dias').innerHTML = html;
+    for (let d = 1; d <= totalDias; d++) {
+        const ehHoje = d === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
+        const chave = `${ano}-${mes}-${d}`;
+        const temCompromisso = compromissos[chave];
+        const classe = ehHoje ? 'hoje' : temCompromisso ? 'marcado' : '';
+        const label = temCompromisso ? `<div style="font-size:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${compromissos[chave]}</div>` : '';
+        html += `<div class="dia ${classe}" onclick="abrirPopup(${d})">${d}${label}</div>`;
     }
+    document.getElementById('dias').innerHTML = html;
+}
 
-    function mudarMes(direcao) {
-        mes += direcao;
-        if (mes > 11) { mes = 0; ano++; }
-        if (mes < 0) { mes = 11; ano--; }
+function mudarMes(direcao) {
+    mes += direcao;
+    if (mes > 11) { mes = 0; ano++; }
+    if (mes < 0) { mes = 11; ano--; }
+    renderizar();
+}
+
+function abrirPopup(dia) {
+    const chave = `${ano}-${mes}-${dia}`;
+    const texto = prompt(`Compromisso para ${dia} de ${meses[mes]}:`, compromissos[chave] || '');
+    if (texto !== null) {
+        if (texto.trim()) {
+            compromissos[chave] = texto.trim();
+        } else {
+            delete compromissos[chave];
+        }
+        localStorage.setItem('compromissos', JSON.stringify(compromissos));
         renderizar();
     }
+}
 
-    function abrirPopup(dia) {
-        const chave = `${ano}-${mes}-${dia}`;
-        const texto = prompt(`Compromisso para ${dia} de ${meses[mes]}:`, compromissos[chave] || '');
-        if (texto !== null) {
-            if (texto.trim()) {
-                compromissos[chave] = texto.trim();
-            } else {
-                delete compromissos[chave];
-            }
-            localStorage.setItem('compromissos', JSON.stringify(compromissos));
-            renderizar();
-        }
-    }
-
-    renderizar();
-
-        async function perguntarIA() {
-        const pergunta = document.getElementById("perguntaIA").value.trim();
-        const resposta = document.getElementById("respostaIA");
-
-        if (!pergunta) {
-            resposta.textContent = "Digite uma pergunta primeiro.";
-            return;
-        }
-
-        resposta.textContent = "O A+ está pensando...";
-
-        try {
-            const resultado = await fetch("/api/perguntar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    pergunta: pergunta
-                })
-            });
-
-            const dados = await resultado.json();
-
-            if (!resultado.ok) {
-                throw new Error(dados.erro || "Erro ao consultar a IA.");
-            }
-
-            resposta.textContent = dados.resposta;
-
-        } catch (erro) {
-            console.error(erro);
-            resposta.textContent =
-                "Não foi possível conversar com a IA. Verifique se o servidor está funcionando.";
-        }
-    }
-
-
-    window.onload = function() {
-        document.querySelectorAll('textarea').forEach((textarea, index) => {
-            const valorSalvo = localStorage.getItem('textarea_' + index);
-            if (valorSalvo) {
-                textarea.value = valorSalvo;
-            }
-            textarea.addEventListener('input', () => {
-                localStorage.setItem('textarea_' + index, textarea.value);
-            });
-        });
-    }
-
-    async function perguntarIA() {
-
+async function perguntarIA() {
     const pergunta = document.getElementById("perguntaIA").value.trim();
     const resposta = document.getElementById("respostaIA");
 
@@ -616,10 +563,11 @@
         return;
     }
 
-    resposta.textContent = "O A+ está pensando...";
+    resposta.textContent = "O Professor está pensando...";
 
     try {
-        const resultado = await fetch("/api/perguntar", {
+        // Rota corrigida especificamente para o Professor
+        const resultado = await fetch("/api/perguntar-professor", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -642,6 +590,21 @@
         resposta.textContent = "Erro: " + erro.message;
     }
 }
+
+window.onload = function() {
+    renderizar();
+    
+    document.querySelectorAll('textarea').forEach((textarea, index) => {
+        const valorSalvo = localStorage.getItem('textarea_' + index);
+        if (valorSalvo) {
+            textarea.value = valorSalvo;
+        }
+        textarea.addEventListener('input', () => {
+            localStorage.setItem('textarea_' + index, textarea.value);
+        });
+    });
+}
+
 </script>
 
     </body>
