@@ -40,9 +40,11 @@ app.get("/aprenda+colegabemvindo.html", (req, res) => {
 });
 
 // Rota para a página Professor Bem-vindo
+// Rota para a página Professor Bem-vindo
 app.get("/aprenda+professorbemvindo.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "aprenda+professorBemvindo.html"));
+  res.sendFile(path.join(__dirname, "aprenda+professorbemvindo.html"));
 });
+
 
 // Rotas para a página do Professor
 app.get("/professor", (req, res) => {
