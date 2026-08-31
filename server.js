@@ -18,28 +18,38 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Rota para a página do Aluno (Colega)
+// Permite acessar a página do Aluno digitando apenas /aluno
 app.get("/aluno", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
 
-// Rota dedicada para resolver o Cannot GET do aprenda+b.html
+// Permite acessar a página do Aluno digitando o link completo /aprenda+colega.html
+app.get("/aprenda+colega.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+colega.html"));
+});
+
+// Rota para a página aprenda+b.html
 app.get("/aprenda+b.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+b.html"));
 });
 
-// Rota dedicada para resolver o Cannot GET do aprenda+c.html
+// Rota para a página aprenda+c.html
 app.get("/aprenda+c.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+c.html"));
 });
 
-// Rota dedicada para a página do professor bem-vindo
+// Rota para a página do professor bem-vindo
 app.get("/aprenda+professorBemvindo.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "aprenda+professorbemvindo.html"));
+  res.sendFile(path.join(__dirname, "aprenda+professorBemvindo.html"));
 });
 
-// Rota para a página do Professor
+// Permite acessar a página do Professor digitando apenas /professor
 app.get("/professor", (req, res) => {
+  res.sendFile(path.join(__dirname, "aprenda+professor.html"));
+});
+
+// Permite acessar a página do Professor digitando o link completo /aprenda+professor.html
+app.get("/aprenda+professor.html", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+professor.html"));
 });
 
