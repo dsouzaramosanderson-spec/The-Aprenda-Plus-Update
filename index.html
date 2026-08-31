@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
+        <!-- Adicionada a tag viewport necessária para funcionar em celulares -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>Aprenda+</title>
         <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
@@ -8,6 +10,8 @@
         <style>
             body {
                 font-family: 'League Spartan', sans-serif;
+                margin: 0; /* Evita barras de rolagem desnecessárias nas laterais */
+                padding: 0;
             }
 
             .faixa {
@@ -31,6 +35,13 @@
                 background-color: yellow;
                 color: black;
                 text-decoration: none;
+                display: inline-block; /* Garante que o espaçamento do botão funcione no celular */
+            }
+
+            /* Adaptação apenas para imagens de tela cheia não estourarem no smartphone */
+            img {
+                max-width: 90%; /* Limita o tamanho em telas pequenas */
+                height: auto;   /* Mantém a proporção correta da prancheta */
             }
         </style>
     </head>
