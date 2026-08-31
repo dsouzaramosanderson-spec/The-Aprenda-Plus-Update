@@ -14,8 +14,13 @@ const client = new OpenAI({
 app.use(express.json());
 app.use(express.static("."));
 
-// Rota para a página do Colega
+// Rota principal: Agora abre o index.html direto
 app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+// Nova rota para a página do Aluno (Colega)
+app.get("/aluno", (req, res) => {
   res.sendFile(path.join(__dirname, "aprenda+colega.html"));
 });
 
@@ -119,6 +124,7 @@ app.post("/api/perguntar-professor", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
-  console.log(`Acesse o Colega em: http://localhost:${PORT}/`);
+  console.log(`Acesse a Home em: http://localhost:${PORT}/`);
+  console.log(`Acesse o Colega em: http://localhost:${PORT}/aluno`);
   console.log(`Acesse o Professor em: http://localhost:${PORT}/professor`);
 });
