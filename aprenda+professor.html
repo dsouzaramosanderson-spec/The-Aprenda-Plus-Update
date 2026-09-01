@@ -12,14 +12,14 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        margin: 0; /* Evita que o corpo do site crie barras de rolagem desnecessárias no celular */
+        margin: 0;
     }
 
     textarea {
         border-radius: 24px;
         text-align: center;
-        width: 100%;       /* Ocupa a largura total disponível dentro da caixa */
-        max-width: 400px;  /* Mantém o limite original de 400px em telas de computador */
+        width: 100%;       
+        max-width: 400px;  
         box-sizing: border-box;
     }
 
@@ -44,7 +44,7 @@
         background-color: yellow;
         color: black;
         text-decoration: none;
-        display: inline-block; /* Garante o espaçamento correto em telas de toque */
+        display: inline-block; 
     }
 
     .atalho {
@@ -54,29 +54,29 @@
     .caderno {
         border-radius: 24px;
         text-align: center;
-        width: 100%;       /* Torna o caderno responsivo para caber na tela do celular */
-        max-width: 1600px; /* Mantém o tamanho original de 1600px no computador */
-        height: auto;      /* Troca o tamanho fixo imenso por altura dinâmica */
-        min-height: 500px; /* Garante um tamanho confortável para digitação */
+        width: 100%;       
+        max-width: 1600px; 
+        height: auto;      
+        min-height: 500px; 
         box-sizing: border-box;
     }
 
     .textarea-first {
-        margin-left: 0;    /* Remove o espaçamento fixo que jogava o elemento para fora da tela do celular */
-        margin: 0 auto;    /* Centraliza o elemento automaticamente */
+        margin-left: 0;    
+        margin: 0 auto;    
         display: block;
     }
 
     .atalho-primeiro {
         width: 70px;
-        margin-left: 0;    /* Remove a margem fixa de 610px para não esmagar no smartphone */
-        margin: 0 auto;    /* Centraliza o atalho */
+        margin-left: 0;    
+        margin: 0 auto;    
         display: inline-block;
     }
 
     .image-inicio {
-        width: 100%;       /* Ocupa a tela inteira do celular */
-        max-width: 700px;  /* Respeita o limite original de 700px no computador */
+        width: 100%;       
+        max-width: 700px;  
         height: auto;
         border-radius: 60px;
     }
@@ -84,7 +84,7 @@
     .tabs {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;   /* Permite que as abas quebrem para a linha de baixo se faltar espaço no celular */
+        flex-wrap: wrap;   
         background: #00AF80;
         padding: 10px 10px 0 10px;
         gap: 6px;
@@ -114,7 +114,7 @@
 
     .conteudo {
         flex: 1;
-        padding: 20px;     /* Reduzido de 40px para 20px para sobrar mais espaço útil na tela do celular */
+        padding: 20px;    
         background: white;
         display: none;
         box-sizing: border-box;
@@ -128,8 +128,8 @@
         background: white;
         border-radius: 16px;
         padding: 24px;
-        width: 100%;       /* Adapta a largura ao celular */
-        max-width: 320px;  /* Mantém o limite de 320px original */
+        width: 100%;       
+        max-width: 320px;  
         box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         margin: 0 auto;
         box-sizing: border-box;
@@ -189,10 +189,9 @@
     .dia.marcado { background: #fff0f0; color: #e53935; font-weight: bold; }
     .dia.vazio { cursor: default; }
 
-    /* AJUSTE EXCLUSIVO PARA TELAS PEQUENAS (CELULARES) */
     @media (max-width: 600px) {
         .tabs {
-            flex-direction: column; /* As abas ficam uma embaixo da outra para facilitar o clique no celular */
+            flex-direction: column; 
             border-radius: 16px;
             padding: 10px;
         }
@@ -203,8 +202,14 @@
         }
         
         .faixa h1 {
-            font-size: 24px;   /* Diminui levemente o título no topo para não cortar no celular */
+            font-size: 24px;   
             margin-top: 32px;
+        }
+
+        #perguntaIA {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
         }
     }
 </style>
@@ -262,11 +267,13 @@
         <center><h1>Monte Sua Prova</h1></center>
         <center><p>Escolha Também A Plataforma</p></center>
         <center><p class="point">.</p></center>
-        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
-        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
-        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
-        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
-        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        <center>
+            <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+            <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+            <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+            <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+            <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        </center>
     </div>
 
     <div id="pagina3" class="conteudo">
@@ -285,11 +292,13 @@
         <center><h1>Monte Seu Trabalho</h1></center>
         <center><p>Escolha Também A Plataforma</p></center>
         <center><p class="point">.</p></center>
-        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
-        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
-        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
-        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
-        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        <center>
+            <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+            <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+            <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+            <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+            <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        </center>
     </div>
 
     <div id="pagina4" class="conteudo">
@@ -308,77 +317,79 @@
         <center><h1>Monte Sua Advertência</h1></center>
         <center><p>Escolha Também A Plataforma</p></center>
         <center><p class="point">.</p></center>
-        <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
-        <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
-        <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
-        <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
-        <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        <center>
+            <a href="https://excel.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025–present%29.svg/500px-Microsoft_Office_Excel_%282025–present%29.svg.png" class="atalho-primeiro"></a>
+            <a href="https://word.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025–present%29.svg/3840px-Microsoft_Office_Word_%282025–present%29.svg.png" class="atalho"></a>
+            <a href="https://onenote.cloud.microsoft/pt-br/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_OneNote_Icon_%282025_-_present%29.svg/1280px-Microsoft_OneNote_Icon_%282025_-_present%29.svg.png" class="atalho"></a>
+            <a href="https://www.microsoft.com/en-us/microsoft-365/online-surveys-polls-quizzes"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Microsoft_Forms_%282025-present%29.svg/500px-Microsoft_Forms_%282025-present%29.svg.png" class="atalho"></a>
+            <a href="https://www.canva.com"><img src="https://static.vecteezy.com/system/resources/previews/032/329/175/non_2x/canva-icon-logo-symbol-free-png.png" class="atalho"></a>
+        </center>
     </div>
 
     <div id="pagina5" class="conteudo">
         <center><h1>Aqui Coloque A Nota Final Dos Alunos Desse Trimestre</h1></center>
         <center><p>Comforme O Tempo Vamos Atualizando O Trimestre</p></center>
         <center><h1 class="point">.</h1></center>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 1" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 2"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 3"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 4" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 5"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 6"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 7" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 8"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 9"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 10" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 11"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 12"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 13" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 14"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 15"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 16" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 17"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 18"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 19" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 20"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 21"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 22" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 23"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 24"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 25" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 26"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 27"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 28" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 29"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 30"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 31" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 32"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 33"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 34" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 35"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 36"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 37" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 38"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 39"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 40" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 41"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 42"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 43" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 44"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 45"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 46" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 47"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 48"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 49" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 50"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 51"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 52" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 53"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 54"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 55" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 56"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 57"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 58" class="textarea-first"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 59"></textarea>
-        <textarea placeholder="Nome/Sobrenome Do Aluno E Nota 60"></textarea>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 1"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 2"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 3"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 4"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 5"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 6"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 7"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 8"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 9"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 10"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 11"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 12"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 13"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 14"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 15"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 16"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 17"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 18"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 19"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 20"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 21"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 22"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 23"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 24"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 25"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 26"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 27"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 28"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 29"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 30"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 31"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 32"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 33"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 34"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 35"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 36"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 37"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 38"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 39"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 40"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 41"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 42"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 43"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 44"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 45"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 46"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 47"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 48"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 49"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 50"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 51"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 52"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 53"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 54"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 55"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 56"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 57"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 58"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 59"></textarea></center>
+        <center><textarea placeholder="Nome/Sobrenome Do Aluno E Nota 60"></textarea></center>
     </div>
 
     <div id="pagina6" class="conteudo">
@@ -406,72 +417,70 @@
         <center><textarea placeholder="Caderno" class="caderno"></textarea></center>
     </div>
 
-    </div>
-
     <div id="pagina8" class="conteudo">
         <center><h1>Sua Lista De Alunos</h1></center>
         <center><p>Todos Seus Alunos Aqui Nessa Lista</p></center>
         <center><h1 class="point">.</h1></center>
-        <textarea placeholder="Aluno 1" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 2"></textarea>
-        <textarea placeholder="Aluno 3"></textarea>
-        <textarea placeholder="Aluno 4" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 5"></textarea>
-        <textarea placeholder="Aluno 6"></textarea>
-        <textarea placeholder="Aluno 7" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 8"></textarea>
-        <textarea placeholder="Aluno 9"></textarea>
-        <textarea placeholder="Aluno 10" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 11"></textarea>
-        <textarea placeholder="Aluno 12"></textarea>
-        <textarea placeholder="Aluno 13" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 14"></textarea>
-        <textarea placeholder="Aluno 15"></textarea>
-        <textarea placeholder="Aluno 16" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 17"></textarea>
-        <textarea placeholder="Aluno 18"></textarea>
-        <textarea placeholder="Aluno 19" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 20"></textarea>
-        <textarea placeholder="Aluno 21"></textarea>
-        <textarea placeholder="Aluno 22" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 23"></textarea>
-        <textarea placeholder="Aluno 24"></textarea>
-        <textarea placeholder="Aluno 25" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 26"></textarea>
-        <textarea placeholder="Aluno 27"></textarea>
-        <textarea placeholder="Aluno 28" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 29"></textarea>
-        <textarea placeholder="Aluno 30"></textarea>
-        <textarea placeholder="Aluno 31" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 32"></textarea>
-        <textarea placeholder="Aluno 33"></textarea>
-        <textarea placeholder="Aluno 34" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 35"></textarea>
-        <textarea placeholder="Aluno 36"></textarea>
-        <textarea placeholder="Aluno 37" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 38"></textarea>
-        <textarea placeholder="Aluno 39"></textarea>
-        <textarea placeholder="Aluno 40" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 41"></textarea>
-        <textarea placeholder="Aluno 42"></textarea>
-        <textarea placeholder="Aluno 43" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 44"></textarea>
-        <textarea placeholder="Aluno 45"></textarea>
-        <textarea placeholder="Aluno 46" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 47"></textarea>
-        <textarea placeholder="Aluno 48"></textarea>
-        <textarea placeholder="Aluno 49" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 50"></textarea>
-        <textarea placeholder="Aluno 51"></textarea>
-        <textarea placeholder="Aluno 52" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 53"></textarea>
-        <textarea placeholder="Aluno 54"></textarea>
-        <textarea placeholder="Aluno 55" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 56"></textarea>
-        <textarea placeholder="Aluno 57"></textarea>
-        <textarea placeholder="Aluno 58" class="textarea-first"></textarea>
-        <textarea placeholder="Aluno 59"></textarea>
-        <textarea placeholder="Aluno 60"></textarea>
+        <center><textarea placeholder="Aluno 1"></textarea></center>
+        <center><textarea placeholder="Aluno 2"></textarea></center>
+        <center><textarea placeholder="Aluno 3"></textarea></center>
+        <center><textarea placeholder="Aluno 4"></textarea></center>
+        <center><textarea placeholder="Aluno 5"></textarea></center>
+        <center><textarea placeholder="Aluno 6"></textarea></center>
+        <center><textarea placeholder="Aluno 7"></textarea></center>
+        <center><textarea placeholder="Aluno 8"></textarea></center>
+        <center><textarea placeholder="Aluno 9"></textarea></center>
+        <center><textarea placeholder="Aluno 10"></textarea></center>
+        <center><textarea placeholder="Aluno 11"></textarea></center>
+        <center><textarea placeholder="Aluno 12"></textarea></center>
+        <center><textarea placeholder="Aluno 13"></textarea></center>
+        <center><textarea placeholder="Aluno 14"></textarea></center>
+        <center><textarea placeholder="Aluno 15"></textarea></center>
+        <center><textarea placeholder="Aluno 16"></textarea></center>
+        <center><textarea placeholder="Aluno 17"></textarea></center>
+        <center><textarea placeholder="Aluno 18"></textarea></center>
+        <center><textarea placeholder="Aluno 19"></textarea></center>
+        <center><textarea placeholder="Aluno 20"></textarea></center>
+        <center><textarea placeholder="Aluno 21"></textarea></center>
+        <center><textarea placeholder="Aluno 22"></textarea></center>
+        <center><textarea placeholder="Aluno 23"></textarea></center>
+        <center><textarea placeholder="Aluno 24"></textarea></center>
+        <center><textarea placeholder="Aluno 25"></textarea></center>
+        <center><textarea placeholder="Aluno 26"></textarea></center>
+        <center><textarea placeholder="Aluno 27"></textarea></center>
+        <center><textarea placeholder="Aluno 28"></textarea></center>
+        <center><textarea placeholder="Aluno 29"></textarea></center>
+        <center><textarea placeholder="Aluno 30"></textarea></center>
+        <center><textarea placeholder="Aluno 31"></textarea></center>
+        <center><textarea placeholder="Aluno 32"></textarea></center>
+        <center><textarea placeholder="Aluno 33"></textarea></center>
+        <center><textarea placeholder="Aluno 34"></textarea></center>
+        <center><textarea placeholder="Aluno 35"></textarea></center>
+        <center><textarea placeholder="Aluno 36"></textarea></center>
+        <center><textarea placeholder="Aluno 37"></textarea></center>
+        <center><textarea placeholder="Aluno 38"></textarea></center>
+        <center><textarea placeholder="Aluno 39"></textarea></center>
+        <center><textarea placeholder="Aluno 40"></textarea></center>
+        <center><textarea placeholder="Aluno 41"></textarea></center>
+        <center><textarea placeholder="Aluno 42"></textarea></center>
+        <center><textarea placeholder="Aluno 43"></textarea></center>
+        <center><textarea placeholder="Aluno 44"></textarea></center>
+        <center><textarea placeholder="Aluno 45"></textarea></center>
+        <center><textarea placeholder="Aluno 46"></textarea></center>
+        <center><textarea placeholder="Aluno 47"></textarea></center>
+        <center><textarea placeholder="Aluno 48"></textarea></center>
+        <center><textarea placeholder="Aluno 49"></textarea></center>
+        <center><textarea placeholder="Aluno 50"></textarea></center>
+        <center><textarea placeholder="Aluno 51"></textarea></center>
+        <center><textarea placeholder="Aluno 52"></textarea></center>
+        <center><textarea placeholder="Aluno 53"></textarea></center>
+        <center><textarea placeholder="Aluno 54"></textarea></center>
+        <center><textarea placeholder="Aluno 55"></textarea></center>
+        <center><textarea placeholder="Aluno 56"></textarea></center>
+        <center><textarea placeholder="Aluno 57"></textarea></center>
+        <center><textarea placeholder="Aluno 58"></textarea></center>
+        <center><textarea placeholder="Aluno 59"></textarea></center>
+        <center><textarea placeholder="Aluno 60"></textarea></center>
     </div>
 
     <div id="pagina9" class="conteudo">
@@ -604,7 +613,6 @@ async function perguntarIA() {
     resposta.textContent = "O A+ está pensando...";
 
     try {
-        // Rota corrigida especificamente para o Professor
         const resultado = await fetch("/api/perguntar-professor", {
             method: "POST",
             headers: {
