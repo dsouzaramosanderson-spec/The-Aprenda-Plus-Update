@@ -1,38 +1,46 @@
-// 1. Registra o Service Worker no navegador
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-    .then(() => console.log('Service Worker registrado com sucesso!'))
-    .catch((err) => console.log('Erro ao registrar Service Worker:', err));
+let deferredPrompt;
+const installButton = document.getElementById('install-btn');
+
+// Oculta o botão por padrão até o navegador confirmar que pode instalar
+if (installButton) {
+  installButton.style.display = 'none';
 }
 
-// 2. Controla o botão "Instalar o APP"
-let eventoInstalacao;
-const botaoInstalar = document.getElementById('btn-instalar');
-
-// O navegador avisa quando o PWA está pronto para ser instalado
+// Captura o evento de instalação disparado pelo navegador
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault(); // Evita a barrinha padrão do navegador
-  eventoInstalacao = e;
-  
-  // Mostra o seu botão na tela
-  if (botaoInstalar) {
-    botaoInstalar.style.display = 'block';
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // Exibe o botão na tela
+  if (installButton) {
+    installButton.style.display = 'block';
   }
 });
 
-// Ação de clicar no botão "Instalar o APP"
-if (botaoInstalar) {
-  botaoInstalar.addEventListener('click', async () => {
-    if (!eventoInstalacao) return;
-    
-    // Esconde o botão após o clique
-    botaoInstalar.style.display = 'none';
-    
-    // Dispara a janela nativa de instalação do sistema
-    eventoInstalacao.prompt();
-    
-    const resultado = await eventoInstalacao.userChoice;
-    console.log(`Resposta do usuário: ${resultado.outcome}`);
-    eventoInstalacao = null;
+// Ação de clique no botão
+if (installButton) {
+  installButton.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+      alert('O aplicativo já está instalado ou este navegador não suporta a instalação direta.');
+      return;
+    }
+
+    // Exibe o prompt nativo de instalação
+    deferredPrompt.prompt();
+
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Resultado do prompt: ${outcome}`);
+
+    // Limpa a variável após o uso
+    deferredPrompt = null;
+    installButton.style.display = 'none';
   });
 }
+
+// Oculta o botão se o app já foi instalado
+window.addEventListener('appinstalled', () => {
+  console.log('PWA instalado com sucesso!');
+  if (installButton) {
+    installButton.style.display = 'none';
+  }
+});
