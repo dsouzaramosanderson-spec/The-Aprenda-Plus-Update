@@ -488,6 +488,26 @@
         </center>
     </div>
 
+    <!-- Seu botão de instalação -->
+  <button id="install-btn">Instalar o APP</button>
+
+  <!-- 1. Registro do Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW registrado com sucesso!', reg))
+          .catch(err => console.error('Erro ao registrar SW:', err));
+      });
+    }
+  </script>
+
+  <!-- 2. Seu script principal da aplicação (se tiver) -->
+  <script src="./seu-script-existente.js"></script>
+
+  <!-- 3. O script que cuida da lógica do botão do PWA -->
+  <script src="./pwa.js"></script>
+
     <script>
     function trocar(event, id) {
     document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
