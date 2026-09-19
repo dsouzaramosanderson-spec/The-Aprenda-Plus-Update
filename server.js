@@ -13,6 +13,26 @@ const client = new OpenAI({
 app.use(express.json());
 app.use(express.static("."));
 
+app.get("/manifest.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "manifest.json"));
+});
+
+app.get("/pwa.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "pwa.js"));
+});
+
+app.get("/sw.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "sw.js"));
+});
+
+app.get("/icon-192.png", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "icon-192.png"));
+});
+
+app.get("/icon-512.png", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "icon-512.png"));
+});
+
 // Rota principal: abre o index.html direto
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
