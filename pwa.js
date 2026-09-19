@@ -1,48 +1,54 @@
-let deferredPrompt = null;
+// 1. Variável global compartilhada entre as páginas
+window.deferredPrompt = window.deferredPrompt || null;
 
-// Regista o Service Worker
+// 2. Registra o Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
-      .then((reg) => console.log('Service Worker registado com sucesso:', reg.scope))
-      .catch((err) => console.error('Falha ao registar o Service Worker:', err));
+      .then((reg) => console.log('Service Worker ativo:', reg.scope))
+      .catch((err) => console.error('Erro no Service Worker:', err));
   });
 }
 
-// Captura o evento de instalação nativo (Chrome / Android / Edge)
+// 3. Captura a autorização do Chrome/Android assim que o app carrega
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
-  deferredPrompt = e;
-  console.log('Evento beforeinstallprompt capturado!');
+  window.deferredPrompt = e;
+  console.log('PWA liberado para instalação!');
 });
 
-// Evento ao clicar no botão
-document.addEventListener('DOMContentLoaded', () => {
-  const installButton = document.getElementById('install-btn');
+// 4. Função que ativa o clique do botão em qualquer página
+function conectarBotaoInstalacao() {
+  // Procura por qualquer um dos dois IDs possíveis
+  const btn = document.getElementById('btn-instalar') || document.getElementById('install-btn');
 
-  if (!installButton) {
-    console.error('Botão com id "install-btn" não foi encontrado no HTML.');
-    return;
+  if (btn) {
+    btn.onclick = async () => {
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (window.deferredPrompt) {
+        window.deferredPrompt.prompt();
+        const { outcome } = await window.deferredPrompt.userChoice;
+        console.log(`Escolha do usuário: ${outcome}`);
+        window.deferredPrompt = null;
+      } else if (isSafari) {
+        alert(
+          'No Safari (iOS/Mac), a instalação é feita pelo menu nativo:\n\n' +
+          '1. Toque no ícone de Compartilhar\n' +
+          '2. Selecione "Adicionar à Tela de Início"'
+        );
+      } else {
+        alert(
+          'A instalação não está liberada no momento.\n\n' +
+          'Verifique:\n' +
+          '1. O app já está instalado no celular?\n' +
+          '2. Você está acessando via HTTPS?\n' +
+          '3. Aguarde alguns segundos e tente novamente.'
+        );
+      }
+    };
   }
+}
 
-  installButton.addEventListener('click', async () => {
-    // Detecta Safari / iOS
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (deferredPrompt) {
-      // Dispara o prompt de instalação nativo no Android / Desktop
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log(`Resultado da escolha: ${outcome}`);
-      deferredPrompt = null;
-    } else if (isSafari) {
-      alert(
-        'No Safari (iOS/Mac), a instalação é feita pelo menu nativo:\n\n' +
-        '1. Clique no ícone de Compartilhar (ou menu Arquivo no Mac)\n' +
-        '2. Escolha "Adicionar à Tela de Início" ou "Adicionar ao Dock"'
-      );
-    } else {
-      alert('A instalação não está disponível no momento. Verifique se o app já está instalado ou acesse via HTTPS.');
-    }
-  });
-});
+// Tenta conectar o botão assim que o HTML da página atual estiver pronto
+document.addEventListener('DOMContentLoaded', conectarBotaoInstalacao);
