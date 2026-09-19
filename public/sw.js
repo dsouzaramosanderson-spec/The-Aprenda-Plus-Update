@@ -1,11 +1,11 @@
 const CACHE_NAME = 'aprenda-cache-v1';
 const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './pwa.js',
-  './icon-192.png',
-  './icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/pwa.js',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Instalação do Service Worker e cache de ficheiros básicos
