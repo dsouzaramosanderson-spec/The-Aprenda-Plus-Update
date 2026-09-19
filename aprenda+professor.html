@@ -545,6 +545,21 @@
         </center>
     </div>
 
+    <!-- Botão de instalação com o ID certo -->
+  <button id="install-btn">Instalar o APP</button>
+
+  <!-- Registro do Service Worker e chamada do pwa.js -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW registrado com sucesso!', reg))
+          .catch(err => console.error('Erro ao registrar SW:', err));
+      });
+    }
+  </script>
+  <script src="./pwa.js"></script>
+
     <script>
     function trocar(event, id) {
     document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
